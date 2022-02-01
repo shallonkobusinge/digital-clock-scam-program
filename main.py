@@ -1,7 +1,6 @@
 # start by importing all the necessary libraries
 
 from tkinter import *
-import sys
 import time  # library to get the current time
 import subprocess
 import threading
@@ -19,6 +18,7 @@ def displayTime():
 
 # Creation of a variable responsible for storing the tkinter window
 main = Tk()
+main.title("Digital Clock")
 # window size defined
 main.geometry("720x420")
 
@@ -37,7 +37,7 @@ clock_label.grid(row=2, column=2, pady=25, padx=20)
 displayTime()
 
 # creation of a digital clock's variable
-digital_clock_title = Label(main, text="The Digital Clock in Python", font="times 24 bold")
+digital_clock_title = Label(main, text="Screen time Clock", font="times 24 bold")
 digital_clock_title.grid(row=0, column=2)
 
 hours_mins_secs = Label(main, text="Hours             Minutes          Seconds", font="times 15 bold")
