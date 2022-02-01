@@ -27,7 +27,7 @@ main.geometry("720x320")
 # Third label - shows the digital clock's title at the top
 
 
-text_font = ("Boulder", 68, 'bold')
+text_font = ("Boulder", 50, 'bold')
 background = "#f2e750"
 foreground = "#363529"
 border_width = 25
