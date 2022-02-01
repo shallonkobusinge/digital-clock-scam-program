@@ -20,7 +20,7 @@ def displayTime():
 main = Tk()
 main.title("Digital Clock")
 # window size defined
-main.geometry("720x420")
+main.geometry("720x320")
 
 # First label - shows the time,
 # Second label - shows hour:minute:second,
